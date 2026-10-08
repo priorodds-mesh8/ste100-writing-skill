@@ -1,0 +1,4 @@
+interface:
+  display_name: "Diagram first"
+  short_description: "Build diagrams in the approved sheet design"
+  default_prompt: "Use $diagram-first to show this process as an engineering sheet."

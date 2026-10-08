@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-07",
+  "browser": "151.0.7922.34",
+  "platform": "darwin",
+  "device_scale_factor": 1,
+  "font_state": "Bundled matching IBM Plex faces loaded in both documents.",
+  "comparisons": [
+    {
+      "width": 1280,
+      "theme": "light",
+      "same_size": true,
+      "changed_pixels": 0,
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "theme": "dark",
+      "same_size": true,
+      "changed_pixels": 0,
+      "passed": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "same_size": true,
+      "changed_pixels": 0,
+      "passed": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "same_size": true,
+      "changed_pixels": 0,
+      "passed": true
+    },
+    {
+      "width": 899,
+      "theme": "light",
+      "same_size": true,
+      "changed_pixels": 0,
+      "passed": true
+    },
+    {
+      "width": 899,
+      "theme": "dark",
+      "same_size": true,
+      "changed_pixels": 0,
+      "passed": true
+    },
+    {
+      "width": 901,
+      "theme": "light",
+      "same_size": true,
+      "changed_pixels": 0,
+      "passed": true
+    },
+    {
+      "width": 901,
+      "theme": "dark",
+      "same_size": true,
+      "changed_pixels": 0,
+      "passed": true
+    }
+  ],
+  "new_fixture": [
+    {
+      "width": 1280,
+      "theme": "light",
+      "document_width": 1280,
+      "remote_requests": 0
+    },
+    {
+      "width": 1280,
+      "theme": "dark",
+      "document_width": 1280,
+      "remote_requests": 0
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "document_width": 390,
+      "remote_requests": 0
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "document_width": 390,
+      "remote_requests": 0
+    },
+    {
+      "width": 899,
+      "theme": "light",
+      "document_width": 899,
+      "remote_requests": 0
+    },
+    {
+      "width": 899,
+      "theme": "dark",
+      "document_width": 899,
+      "remote_requests": 0
+    },
+    {
+      "width": 901,
+      "theme": "light",
+      "document_width": 901,
+      "remote_requests": 0
+    },
+    {
+      "width": 901,
+      "theme": "dark",
+      "document_width": 901,
+      "remote_requests": 0
+    }
+  ]
+}

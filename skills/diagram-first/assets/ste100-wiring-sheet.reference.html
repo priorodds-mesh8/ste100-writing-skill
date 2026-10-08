@@ -1,0 +1,310 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>STE100 Wiring Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  /* Layout: one engineering-drawing sheet. Six lettered panels in a 3-column grid, title block last. */
+  :root {
+    --paper: #eef2f5;
+    --panel: #ffffff;
+    --tint: #e6edf4;
+    --ink: #14202b;
+    --muted: #55687a;
+    --rule: #c6d1db;
+    --info: #1f5fa8;
+    --good: #17703f;
+    --bad: #b3261e;
+    --sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --paper: #0e151c;
+      --panel: #151e27;
+      --tint: #1c2833;
+      --ink: #e4ebf1;
+      --muted: #94a5b4;
+      --rule: #2d3b48;
+      --info: #78b4f4;
+      --good: #5fca8d;
+      --bad: #ff8d84;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #0e151c;
+    --panel: #151e27;
+    --tint: #1c2833;
+    --ink: #e4ebf1;
+    --muted: #94a5b4;
+    --rule: #2d3b48;
+    --info: #78b4f4;
+    --good: #5fca8d;
+    --bad: #ff8d84;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.45;
+    padding-inline: 16px;
+  }
+  .sheet { max-width: 1240px; margin-inline: auto; padding-block: 24px 32px; }
+  header.top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 24px; margin-bottom: 14px; }
+  h1 { font-size: 22px; font-weight: 600; margin: 0; text-wrap: balance; }
+  .reading { color: var(--muted); font-size: 13px; margin: 0; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    border: 1.5px solid var(--ink);
+    padding: 14px;
+    background: var(--paper);
+  }
+  .panel { background: var(--panel); border: 1px solid var(--ink); display: flex; flex-direction: column; min-width: 0; }
+  .span2 { grid-column: span 2; }
+  .panel > header { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid var(--rule); }
+  .badge { font-family: var(--mono); font-weight: 600; font-size: 12px; background: var(--ink); color: var(--panel); width: 22px; height: 22px; display: grid; place-items: center; flex: none; }
+  .panel h2 { font-size: 14px; font-weight: 600; margin: 0; flex: 1; }
+  .tag { font-family: var(--mono); font-size: 11px; color: var(--muted); text-align: right; }
+  .body { padding: 12px; display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 0; }
+
+  .mono { font-family: var(--mono); }
+  .scroll { overflow-x: auto; }
+
+  /* A: structure tree */
+  .tree { font-family: var(--mono); font-size: 12px; line-height: 1.7; margin: 0; padding: 0; list-style: none; }
+  .tree ul { list-style: none; margin: 0; padding-left: 18px; border-left: 1px solid var(--rule); margin-left: 4px; }
+  .tree .dir { font-weight: 600; }
+  .tree .note { color: var(--muted); font-family: var(--sans); font-size: 12px; }
+
+  /* B: wiring diagram */
+  svg.wire { width: 100%; height: auto; display: block; color: var(--ink); font-family: var(--mono); }
+  svg.wire .box { fill: var(--tint); stroke: currentColor; stroke-width: 1.2; }
+  svg.wire .tool { fill: var(--panel); stroke: currentColor; stroke-width: 1.2; }
+  svg.wire .t1 { font-size: 12px; font-weight: 600; fill: currentColor; }
+  svg.wire .t2 { font-size: 10px; fill: var(--muted); }
+  svg.wire .lbl { font-size: 10.5px; fill: var(--info); text-anchor: middle; }
+  svg.wire .solid { stroke: var(--info); stroke-width: 1.8; fill: none; }
+  svg.wire .dash { stroke: var(--info); stroke-width: 1.8; fill: none; stroke-dasharray: 5 4; }
+  svg.wire .mk { fill: var(--info); }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 12px; color: var(--muted); }
+  .legend i { display: inline-block; width: 28px; vertical-align: middle; margin-right: 6px; border-top: 2px solid var(--info); }
+  .legend i.d { border-top-style: dashed; }
+
+  /* C: table */
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-family: var(--mono); font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); white-space: nowrap; }
+  td.path { font-family: var(--mono); font-size: 11.5px; word-break: break-all; }
+  .ok { color: var(--good); font-weight: 600; white-space: nowrap; }
+  .no { color: var(--bad); font-weight: 600; white-space: nowrap; }
+  .key { font-size: 12px; color: var(--muted); margin: 0; }
+
+  /* D: annotated example */
+  .ex { font-family: var(--mono); font-size: 12px; margin: 0; }
+  .ex .line { padding: 3px 8px; background: var(--tint); border-left: 3px solid var(--info); white-space: pre-wrap; }
+  .ex .ann { font-family: var(--sans); font-size: 12px; color: var(--info); padding: 2px 0 8px 11px; }
+  .ex .ann::before { content: "\2191  "; }
+
+  /* E: limit bars */
+  .bars { display: flex; flex-direction: column; gap: 14px; }
+  .bar .row { display: flex; justify-content: space-between; gap: 8px; font-size: 12.5px; margin-bottom: 4px; }
+  .bar .max { font-family: var(--mono); font-weight: 600; color: var(--info); white-space: nowrap; }
+  .track { position: relative; height: 10px; background: var(--tint); border: 1px solid var(--rule); }
+  .fill { position: absolute; inset: 0 auto 0 0; background: var(--info); opacity: .28; }
+  .mark { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--info); }
+  .scale { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 3px; }
+
+  /* F: open checks */
+  .checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; font-size: 13px; }
+  .checks li { display: grid; grid-template-columns: 22px 1fr; gap: 6px; }
+  .checks b { font-family: var(--mono); color: var(--bad); }
+
+  /* Title block */
+  .title { display: block; }
+  .title table td:first-child { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); width: 74px; white-space: nowrap; }
+  .title table td { border-bottom: 1px solid var(--rule); }
+  .title table tr:last-child td { border-bottom: 0; }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: minmax(0, 1fr); padding: 10px; }
+    .span2 { grid-column: auto; }
+  }
+</style>
+
+<div class="sheet">
+  <header class="top">
+    <h1>How does the ste100 skill reach each tool?</h1>
+    <p class="reading">Read A first, then B. C lists each tool. F lists what is not yet checked.</p>
+  </header>
+
+  <div class="grid">
+
+    <section class="panel" aria-labelledby="pa">
+      <header><span class="badge">A</span><h2 id="pa">Source folder</h2><span class="tag">one copy</span></header>
+      <div class="body">
+        <ul class="tree">
+          <li><span class="dir">ste100/</span>
+            <ul>
+              <li>SKILL.md
+                <ul>
+                  <li class="note">Scope and strictness (80% default)</li>
+                  <li class="note">Core rules, sentence limits</li>
+                  <li class="note">Procedures, safety, word table</li>
+                  <li class="note">Examples and self-check</li>
+                </ul>
+              </li>
+              <li><span class="dir">references/</span>
+                <ul><li>rules.md <span class="note">Rules 1.1 to 9.4</span></li></ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p class="key mono">~/Documents/ObsidianVault/system/agent-skills/</p>
+        <p class="key">Each tool points here. No tool holds its own copy of the rules.</p>
+      </div>
+    </section>
+
+    <section class="panel span2" aria-labelledby="pb">
+      <header><span class="badge">B</span><h2 id="pb">Wiring to four tools</h2><span class="tag">data flow</span></header>
+      <div class="body">
+        <figure style="margin:0">
+          <svg class="wire" viewBox="0 0 570 300" role="img" aria-label="The vault folder ste100 links to Claude Code and Codex by symlink, and to Cursor and Grok by a pointer.">
+            <defs>
+              <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+                <path class="mk" d="M0,0 L10,5 L0,10 z"/>
+              </marker>
+            </defs>
+            <rect class="box" x="10" y="10" width="140" height="280"/>
+            <text class="t1" x="80" y="120" text-anchor="middle">Vault source</text>
+            <text class="t2" x="80" y="142" text-anchor="middle">system/agent-skills/</text>
+            <text class="t2" x="80" y="156" text-anchor="middle">ste100/</text>
+            <text class="t2" x="80" y="176" text-anchor="middle">SKILL.md</text>
+            <text class="t2" x="80" y="190" text-anchor="middle">references/rules.md</text>
+
+            <path class="solid" d="M150,36 H368" marker-end="url(#ah)"/>
+            <path class="solid" d="M150,112 H368" marker-end="url(#ah)"/>
+            <path class="dash" d="M150,188 H368" marker-end="url(#ah)"/>
+            <path class="dash" d="M150,264 H368" marker-end="url(#ah)"/>
+            <text class="lbl" x="259" y="28">symlink</text>
+            <text class="lbl" x="259" y="104">symlink</text>
+            <text class="lbl" x="259" y="180">path in rule file</text>
+            <text class="lbl" x="259" y="256">block in AGENTS.md</text>
+
+            <rect class="tool" x="370" y="10" width="190" height="52"/>
+            <text class="t1" x="380" y="31">Claude Code</text>
+            <text class="t2" x="380" y="50">~/.claude/skills/ste100</text>
+            <rect class="tool" x="370" y="86" width="190" height="52"/>
+            <text class="t1" x="380" y="107">Codex</text>
+            <text class="t2" x="380" y="126">~/.codex/skills/ste100</text>
+            <rect class="tool" x="370" y="162" width="190" height="52"/>
+            <text class="t1" x="380" y="183">Cursor</text>
+            <text class="t2" x="380" y="202">~/.cursor/rules/ste100.mdc</text>
+            <rect class="tool" x="370" y="238" width="190" height="52"/>
+            <text class="t1" x="380" y="259">Grok</text>
+            <text class="t2" x="380" y="278">~/.grok/AGENTS.md</text>
+          </svg>
+          <figcaption class="legend">
+            <span><i></i>The tool opens the skill folder</span>
+            <span><i class="d"></i>The tool reads a pointer and must open the file</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="panel span2" aria-labelledby="pc">
+      <header><span class="badge">C</span><h2 id="pc">Entry point for each tool</h2><span class="tag">status</span></header>
+      <div class="body">
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Tool</th><th>Entry point</th><th>Instruction block in</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Claude Code</td><td class="path">~/.claude/skills/ste100</td><td class="path">~/.claude/CLAUDE.md</td><td class="ok">&#10003; Wired</td></tr>
+              <tr><td>Codex</td><td class="path">~/.codex/skills/ste100</td><td class="path">~/.codex/AGENTS.md</td><td class="ok">&#10003; Wired</td></tr>
+              <tr><td>Cursor</td><td class="path">~/.cursor/rules/ste100.mdc</td><td class="path">same file, alwaysApply: true</td><td class="ok">&#10003; Wired</td></tr>
+              <tr><td>Grok</td><td class="path">none (no skill folder)</td><td class="path">~/.grok/AGENTS.md</td><td class="no">? Skill load unconfirmed</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="key">Grok source copy: ~/prompt-library/integrations/grok/AGENTS.md. Both copies match.</p>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="pd">
+      <header><span class="badge">D</span><h2 id="pd">The pointer block</h2><span class="tag">annotated</span></header>
+      <div class="body">
+        <div class="ex">
+          <div class="line">## Writing style (always on)</div>
+          <div class="ann">Heading. The block loads in every session.</div>
+          <div class="line">Load the `ste100` skill first and follow it.</div>
+          <div class="ann">Command. It names the skill.</div>
+          <div class="line">For client-facing prose, `anti-slop` has priority.</div>
+          <div class="ann">Exception. Email and proposals keep short sentences only.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="pe">
+      <header><span class="badge">E</span><h2 id="pe">Limits the skill sets</h2><span class="tag">maximum values</span></header>
+      <div class="body">
+        <div class="bars">
+          <div class="bar">
+            <div class="row"><span>Procedure sentence</span><span class="max">20 words</span></div>
+            <div class="track"><div class="fill" style="width:66.67%"></div><div class="mark" style="left:calc(66.67% - 1px)"></div></div>
+            <div class="scale"><span>0</span><span>10</span><span>20</span><span>30</span></div>
+          </div>
+          <div class="bar">
+            <div class="row"><span>Description sentence</span><span class="max">25 words</span></div>
+            <div class="track"><div class="fill" style="width:83.33%"></div><div class="mark" style="left:calc(83.33% - 1px)"></div></div>
+            <div class="scale"><span>0</span><span>10</span><span>20</span><span>30</span></div>
+          </div>
+          <div class="bar">
+            <div class="row"><span>Paragraph</span><span class="max">6 sentences</span></div>
+            <div class="track"><div class="fill" style="width:60%"></div><div class="mark" style="left:calc(60% - 1px)"></div></div>
+            <div class="scale"><span>0</span><span>5</span><span>10</span></div>
+          </div>
+          <div class="bar">
+            <div class="row"><span>Noun cluster</span><span class="max">3 words</span></div>
+            <div class="track"><div class="fill" style="width:60%"></div><div class="mark" style="left:calc(60% - 1px)"></div></div>
+            <div class="scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="pf">
+      <header><span class="badge">F</span><h2 id="pf">Open checks</h2><span class="tag">not yet done</span></header>
+      <div class="body">
+        <ul class="checks">
+          <li><b>&#10007;</b><span>No live session has run with the rule in any tool.</span></li>
+          <li><b>&#10007;</b><span>Grok may not load a skill file. Test it.</span></li>
+          <li><b>&#10007;</b><span>Cursor must open SKILL.md by path. Test it.</span></li>
+          <li><b>&#10007;</b><span>git-crypt locks <span class="mono">system/</span> in a remote clone.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel title" aria-labelledby="pt">
+      <header><span class="badge">T</span><h2 id="pt">Title block</h2><span class="tag">sheet 1 of 1</span></header>
+      <div class="body" style="padding:0">
+        <table>
+          <tr><td>Title</td><td>STE100 wiring</td></tr>
+          <tr><td>Source</td><td class="path">system/agent-skills/ste100</td></tr>
+          <tr><td>Scope</td><td>Claude Code, Codex, Cursor, Grok</td></tr>
+          <tr><td>Standard</td><td>ASD-STE100 Issue 9</td></tr>
+          <tr><td>Date</td><td>2026-10-04</td></tr>
+        </table>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+</body></html>

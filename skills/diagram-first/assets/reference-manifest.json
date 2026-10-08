@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "reference_title": "STE100 Wiring Sheet",
+  "reference_url": "https://claude.ai/artifact/RPoZeENf5WKAYYhF4eFtsr",
+  "artifact_code_id": "c58a62d8-bb39-4d66-9a17-ab8d8289e091",
+  "retrieved_date": "2026-10-07",
+  "content_date": "2026-10-04",
+  "files": {
+    "ste100-wiring-sheet.html": {
+      "bytes": 16431,
+      "sha256": "1274d87744a4bf896e74ab227e9812390bcc1e62c456d0bea00002de734523f7"
+    },
+    "ste100-wiring-sheet.fragment.html": {
+      "bytes": 15879,
+      "sha256": "dbf83ccf9ecf2252882cf08c0f5bb22d8b863712c28062bf29e3bfc595fbae22"
+    }
+  },
+  "source_stylesheet_sha256": "3868572cff3dc5fe76d333b8191c67210124d389ad69e697d90f17714b886521",
+  "export_contains_fragment_verbatim": true,
+  "panels": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "T"
+  ],
+  "fonts": [
+    "IBM Plex Sans",
+    "IBM Plex Mono"
+  ],
+  "external_dependency": "The original HTML loads fonts from Google Fonts.",
+  "reference_status": "Historical visual reference. Its old paths and test status are not current support claims.",
+  "packaged_reference": "ste100-wiring-sheet.reference.html",
+  "fragment_status": "The original fragment is contained verbatim in the complete export. It is not a separate packaged file."
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "terms": [
+    {
+      "term": "sample gate",
+      "role": "technical_noun",
+      "meaning": "An invented fixture that holds a test sample.",
+      "domain": "example bench",
+      "forms": [
+        "sample gates"
+      ],
+      "restrictions": [
+        "Use only for the fixture in this example."
+      ]
+    },
+    {
+      "term": "North Sample Lab",
+      "role": "proper_name",
+      "meaning": "An invented laboratory name.",
+      "domain": "example bench"
+    },
+    {
+      "term": "zero",
+      "role": "technical_verb",
+      "meaning": "Set the example gauge reading to zero.",
+      "domain": "example bench",
+      "forms": [
+        "zeros",
+        "zeroed"
+      ]
+    }
+  ]
+}

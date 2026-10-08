@@ -1,0 +1,12 @@
+{
+  "name": "ste100-writing-skill",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Development tooling for portable STE100 and diagram-first skills.",
+  "scripts": {
+    "test:visual": "node tests/visual_compare.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

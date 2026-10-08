@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "cases": [
+    {
+      "id": "ste-explicit",
+      "prompt": "Use $ste100 to rewrite this procedure.",
+      "invocation": "explicit",
+      "expected_selection": true,
+      "assessment_method": "Observe skill selection in a fresh host session."
+    },
+    {
+      "id": "ste-automatic",
+      "prompt": "Rewrite this maintenance procedure in ASD-STE100 Simplified Technical English.",
+      "invocation": "automatic",
+      "expected_selection": true,
+      "assessment_method": "Observe skill selection in a fresh host session."
+    },
+    {
+      "id": "plain-email",
+      "prompt": "Use ste100 plain mode to edit this email.",
+      "invocation": "automatic",
+      "expected_selection": true,
+      "assessment_method": "Observe skill selection in a fresh host session."
+    },
+    {
+      "id": "marketing-negative",
+      "prompt": "Write an energetic product launch post.",
+      "invocation": "automatic",
+      "expected_selection": false,
+      "assessment_method": "Observe skill selection in a fresh host session."
+    },
+    {
+      "id": "literary-negative",
+      "prompt": "Write a sonnet about the moon.",
+      "invocation": "automatic",
+      "expected_selection": false,
+      "assessment_method": "Observe skill selection in a fresh host session."
+    },
+    {
+      "id": "ordinary-negative",
+      "prompt": "What is 12 times 4?",
+      "invocation": "automatic",
+      "expected_selection": false,
+      "assessment_method": "Observe skill selection in a fresh host session."
+    }
+  ]
+}

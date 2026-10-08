@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+node_modules/
+validation-output/
+*.pdf
+dictionary.jsonl
+part1_rules.md
+private/
+local-references/
+.DS_Store
+.env
+.env.*
+.agents/
+.claude/
+.grok/

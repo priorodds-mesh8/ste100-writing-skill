@@ -1,0 +1,49 @@
+{
+  "provider": "IBM / Google Fonts",
+  "license": "SIL Open Font License 1.1",
+  "license_url": "https://raw.githubusercontent.com/IBM/plex/master/LICENSE.txt",
+  "files": [
+    {
+      "file": "IBMPlexMono-400.ttf",
+      "family": "IBM Plex Mono",
+      "weight": 400,
+      "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n5ig.ttf",
+      "sha256": "a7fdc993f9f0387caedba4e42521136fa97e4c0837ae6239bf0413ccf8af00c2"
+    },
+    {
+      "file": "IBMPlexMono-500.ttf",
+      "family": "IBM Plex Mono",
+      "weight": 500,
+      "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3twJ8lc.ttf",
+      "sha256": "4fc14a73ca53ba9d32fd759ae1ca1a3133326035d0dd337862b3ee1633cc156e"
+    },
+    {
+      "file": "IBMPlexMono-600.ttf",
+      "family": "IBM Plex Mono",
+      "weight": 600,
+      "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAO8lc.ttf",
+      "sha256": "754dfc9d50cf7aabfb6b108d2c2f7d20a3f1f2cc6f6c01640c6728091272cec0"
+    },
+    {
+      "file": "IBMPlexSans-400.ttf",
+      "family": "IBM Plex Sans",
+      "weight": 400,
+      "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXGKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1swZSAXcomDVmadSD6llzAA.ttf",
+      "sha256": "6dbe082463cf749cfa057d45c3048c90f4df031496498e5b5bdfd0b6babb9d16"
+    },
+    {
+      "file": "IBMPlexSans-500.ttf",
+      "family": "IBM Plex Sans",
+      "weight": 500,
+      "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXGKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1swZSAXcomDVmadSD2FlzAA.ttf",
+      "sha256": "6f7a8c4219e021ff7c9131bc5f1f7af97bcd1436a59578d444a8cb92e9791742"
+    },
+    {
+      "file": "IBMPlexSans-600.ttf",
+      "family": "IBM Plex Sans",
+      "weight": 600,
+      "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXGKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1swZSAXcomDVmadSDNF5zAA.ttf",
+      "sha256": "5311c66fd6d04ae45671236f7eae667b671c06c1dc7e88d52c206e5fadd0fb21"
+    }
+  ]
+}

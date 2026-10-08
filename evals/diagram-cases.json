@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "cases": [
+    {
+      "id": "historical-reference",
+      "input": "examples/diagram-reference.json",
+      "invariants": [
+        "Reference pixels match at 1280, 390, 899, and 901 pixels in light and dark themes.",
+        "Fonts are loaded.",
+        "No document-wide overflow."
+      ],
+      "assessment_method": "Controlled browser screenshots, geometry, and exact RGBA pixel comparison."
+    },
+    {
+      "id": "new-workflow",
+      "input": "examples/diagram-workflow.json",
+      "invariants": [
+        "Facts change inside the fixed visual system.",
+        "All labels stay readable and the document has no overflow.",
+        "Output works without network access."
+      ],
+      "assessment_method": "Offline browser inspection at all four widths and both themes."
+    }
+  ]
+}

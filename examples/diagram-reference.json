@@ -1,0 +1,502 @@
+{
+  "schema_version": "1.0",
+  "document_title": "STE100 Wiring Sheet",
+  "title": "How does the ste100 skill reach each tool?",
+  "reading_guide": "Read A first, then B. C lists each tool. F lists what is not yet checked.",
+  "panels": [
+    {
+      "id": "A",
+      "title": "Source folder",
+      "tag": "one copy",
+      "components": [
+        {
+          "type": "tree",
+          "items": [
+            {
+              "label": "ste100/",
+              "directory": true,
+              "children": [
+                {
+                  "label": [
+                    {
+                      "text": "SKILL.md\n                "
+                    },
+                    {
+                      "text": ""
+                    }
+                  ],
+                  "children": [
+                    {
+                      "label": "Scope and strictness (80% default)",
+                      "note": true
+                    },
+                    {
+                      "label": "Core rules, sentence limits",
+                      "note": true
+                    },
+                    {
+                      "label": "Procedures, safety, word table",
+                      "note": true
+                    },
+                    {
+                      "label": "Examples and self-check",
+                      "note": true
+                    }
+                  ]
+                },
+                {
+                  "label": "references/",
+                  "directory": true,
+                  "children": [
+                    {
+                      "label": [
+                        {
+                          "text": "rules.md "
+                        },
+                        {
+                          "text": "Rules 1.1 to 9.4",
+                          "style": "note"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "text": "~/Documents/ObsidianVault/system/agent-skills/",
+          "mono": true
+        },
+        {
+          "type": "note",
+          "text": "Each tool points here. No tool holds its own copy of the rules.",
+          "mono": false
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Wiring to four tools",
+      "tag": "data flow",
+      "components": [
+        {
+          "type": "flow",
+          "description": "The vault folder ste100 links to Claude Code and Codex by symlink, and to Cursor and Grok by a pointer.",
+          "view_box": [
+            0.0,
+            0.0,
+            570.0,
+            300.0
+          ],
+          "nodes": [
+            {
+              "id": "vault",
+              "kind": "box",
+              "x": 10.0,
+              "y": 10.0,
+              "width": 140.0,
+              "height": 280.0,
+              "labels": [
+                {
+                  "text": "Vault source",
+                  "x": 80.0,
+                  "y": 120.0,
+                  "anchor": "middle",
+                  "kind": "t1"
+                },
+                {
+                  "text": "system/agent-skills/",
+                  "x": 80.0,
+                  "y": 142.0,
+                  "anchor": "middle",
+                  "kind": "t2"
+                },
+                {
+                  "text": "ste100/",
+                  "x": 80.0,
+                  "y": 156.0,
+                  "anchor": "middle",
+                  "kind": "t2"
+                },
+                {
+                  "text": "SKILL.md",
+                  "x": 80.0,
+                  "y": 176.0,
+                  "anchor": "middle",
+                  "kind": "t2"
+                },
+                {
+                  "text": "references/rules.md",
+                  "x": 80.0,
+                  "y": 190.0,
+                  "anchor": "middle",
+                  "kind": "t2"
+                }
+              ]
+            },
+            {
+              "id": "claude",
+              "kind": "tool",
+              "x": 370.0,
+              "y": 10.0,
+              "width": 190.0,
+              "height": 52.0,
+              "labels": [
+                {
+                  "text": "Claude Code",
+                  "x": 380.0,
+                  "y": 31.0,
+                  "kind": "t1"
+                },
+                {
+                  "text": "~/.claude/skills/ste100",
+                  "x": 380.0,
+                  "y": 50.0,
+                  "kind": "t2"
+                }
+              ]
+            },
+            {
+              "id": "codex",
+              "kind": "tool",
+              "x": 370.0,
+              "y": 86.0,
+              "width": 190.0,
+              "height": 52.0,
+              "labels": [
+                {
+                  "text": "Codex",
+                  "x": 380.0,
+                  "y": 107.0,
+                  "kind": "t1"
+                },
+                {
+                  "text": "~/.codex/skills/ste100",
+                  "x": 380.0,
+                  "y": 126.0,
+                  "kind": "t2"
+                }
+              ]
+            },
+            {
+              "id": "cursor",
+              "kind": "tool",
+              "x": 370.0,
+              "y": 162.0,
+              "width": 190.0,
+              "height": 52.0,
+              "labels": [
+                {
+                  "text": "Cursor",
+                  "x": 380.0,
+                  "y": 183.0,
+                  "kind": "t1"
+                },
+                {
+                  "text": "~/.cursor/rules/ste100.mdc",
+                  "x": 380.0,
+                  "y": 202.0,
+                  "kind": "t2"
+                }
+              ]
+            },
+            {
+              "id": "grok",
+              "kind": "tool",
+              "x": 370.0,
+              "y": 238.0,
+              "width": 190.0,
+              "height": 52.0,
+              "labels": [
+                {
+                  "text": "Grok",
+                  "x": 380.0,
+                  "y": 259.0,
+                  "kind": "t1"
+                },
+                {
+                  "text": "~/.grok/AGENTS.md",
+                  "x": 380.0,
+                  "y": 278.0,
+                  "kind": "t2"
+                }
+              ]
+            }
+          ],
+          "edges": [
+            {
+              "from": "vault",
+              "to": "claude",
+              "kind": "solid",
+              "path": "M150,36 H368",
+              "label": {
+                "text": "symlink",
+                "x": 259.0,
+                "y": 28.0
+              }
+            },
+            {
+              "from": "vault",
+              "to": "codex",
+              "kind": "solid",
+              "path": "M150,112 H368",
+              "label": {
+                "text": "symlink",
+                "x": 259.0,
+                "y": 104.0
+              }
+            },
+            {
+              "from": "vault",
+              "to": "cursor",
+              "kind": "dash",
+              "path": "M150,188 H368",
+              "label": {
+                "text": "path in rule file",
+                "x": 259.0,
+                "y": 180.0
+              }
+            },
+            {
+              "from": "vault",
+              "to": "grok",
+              "kind": "dash",
+              "path": "M150,264 H368",
+              "label": {
+                "text": "block in AGENTS.md",
+                "x": 259.0,
+                "y": 256.0
+              }
+            }
+          ],
+          "legend": [
+            {
+              "label": "The tool opens the skill folder",
+              "dashed": false
+            },
+            {
+              "label": "The tool reads a pointer and must open the file",
+              "dashed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Entry point for each tool",
+      "tag": "status",
+      "components": [
+        {
+          "type": "table",
+          "columns": [
+            "Tool",
+            "Entry point",
+            "Instruction block in",
+            "Status"
+          ],
+          "rows": [
+            [
+              "Claude Code",
+              {
+                "text": "~/.claude/skills/ste100",
+                "mono": true
+              },
+              {
+                "text": "~/.claude/CLAUDE.md",
+                "mono": true
+              },
+              {
+                "text": "✓ Wired",
+                "state": "ok"
+              }
+            ],
+            [
+              "Codex",
+              {
+                "text": "~/.codex/skills/ste100",
+                "mono": true
+              },
+              {
+                "text": "~/.codex/AGENTS.md",
+                "mono": true
+              },
+              {
+                "text": "✓ Wired",
+                "state": "ok"
+              }
+            ],
+            [
+              "Cursor",
+              {
+                "text": "~/.cursor/rules/ste100.mdc",
+                "mono": true
+              },
+              {
+                "text": "same file, alwaysApply: true",
+                "mono": true
+              },
+              {
+                "text": "✓ Wired",
+                "state": "ok"
+              }
+            ],
+            [
+              "Grok",
+              {
+                "text": "none (no skill folder)",
+                "mono": true
+              },
+              {
+                "text": "~/.grok/AGENTS.md",
+                "mono": true
+              },
+              {
+                "text": "? Skill load unconfirmed",
+                "state": "unknown"
+              }
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Grok source copy: ~/prompt-library/integrations/grok/AGENTS.md. Both copies match."
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "title": "The pointer block",
+      "tag": "annotated",
+      "components": [
+        {
+          "type": "example",
+          "items": [
+            {
+              "text": "## Writing style (always on)",
+              "annotation": "Heading. The block loads in every session."
+            },
+            {
+              "text": "Load the `ste100` skill first and follow it.",
+              "annotation": "Command. It names the skill."
+            },
+            {
+              "text": "For client-facing prose, `anti-slop` has priority.",
+              "annotation": "Exception. Email and proposals keep short sentences only."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "title": "Limits the skill sets",
+      "tag": "maximum values",
+      "components": [
+        {
+          "type": "bars",
+          "items": [
+            {
+              "label": "Procedure sentence",
+              "value": 20.0,
+              "unit": "words",
+              "scale_max": 30.0,
+              "ticks": [
+                0.0,
+                10.0,
+                20.0,
+                30.0
+              ]
+            },
+            {
+              "label": "Description sentence",
+              "value": 25.0,
+              "unit": "words",
+              "scale_max": 30.0,
+              "ticks": [
+                0.0,
+                10.0,
+                20.0,
+                30.0
+              ]
+            },
+            {
+              "label": "Paragraph",
+              "value": 6.0,
+              "unit": "sentences",
+              "scale_max": 10.0,
+              "ticks": [
+                0.0,
+                5.0,
+                10.0
+              ]
+            },
+            {
+              "label": "Noun cluster",
+              "value": 3.0,
+              "unit": "words",
+              "scale_max": 5.0,
+              "ticks": [
+                0.0,
+                1.0,
+                2.0,
+                3.0,
+                4.0,
+                5.0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "title": "Open checks",
+      "tag": "not yet done",
+      "components": [
+        {
+          "type": "checks",
+          "items": [
+            {
+              "state": "open",
+              "text": "No live session has run with the rule in any tool."
+            },
+            {
+              "state": "open",
+              "text": "Grok may not load a skill file. Test it."
+            },
+            {
+              "state": "open",
+              "text": "Cursor must open SKILL.md by path. Test it."
+            },
+            {
+              "state": "open",
+              "text": [
+                {
+                  "text": "git-crypt locks "
+                },
+                {
+                  "text": "system/",
+                  "style": "mono"
+                },
+                {
+                  "text": " in a remote clone."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "STE100 wiring",
+    "source": "system/agent-skills/ste100",
+    "scope": "Claude Code, Codex, Cursor, Grok",
+    "standard": "ASD-STE100 Issue 9",
+    "date": "2026-10-04"
+  }
+}

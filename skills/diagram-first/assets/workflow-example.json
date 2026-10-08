@@ -1,0 +1,356 @@
+{
+  "schema_version": "1.0",
+  "document_title": "Clear writing workflow",
+  "title": "How does a draft become a checked document?",
+  "reading_guide": "Read A and B first. F names the checks that need a person.",
+  "panels": [
+    {
+      "id": "A",
+      "title": "Portable package",
+      "tag": "two skills",
+      "components": [
+        {
+          "type": "tree",
+          "items": [
+            {
+              "label": "skills/",
+              "directory": true,
+              "children": [
+                {
+                  "label": "ste100/",
+                  "directory": true
+                },
+                {
+                  "label": "diagram-first/",
+                  "directory": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "text": "Each skill works from its installed folder."
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Draft and review",
+      "tag": "data flow",
+      "components": [
+        {
+          "type": "flow",
+          "description": "A draft flows to prose checks, diagram output, source review, and human review.",
+          "view_box": [
+            0.0,
+            0.0,
+            570.0,
+            300.0
+          ],
+          "nodes": [
+            {
+              "id": "vault",
+              "kind": "box",
+              "x": 10.0,
+              "y": 10.0,
+              "width": 140.0,
+              "height": 280.0,
+              "labels": [
+                {
+                  "kind": "t1",
+                  "x": 80,
+                  "y": 140,
+                  "anchor": "middle",
+                  "text": "Source draft"
+                },
+                {
+                  "kind": "t2",
+                  "x": 80,
+                  "y": 160,
+                  "anchor": "middle",
+                  "text": "Facts and conditions"
+                }
+              ]
+            },
+            {
+              "id": "claude",
+              "kind": "tool",
+              "x": 370.0,
+              "y": 10.0,
+              "width": 190.0,
+              "height": 52.0,
+              "labels": [
+                {
+                  "text": "Text checker",
+                  "x": 380.0,
+                  "y": 31.0,
+                  "kind": "t1"
+                },
+                {
+                  "text": "Selected checks only",
+                  "x": 380.0,
+                  "y": 50.0,
+                  "kind": "t2"
+                }
+              ]
+            },
+            {
+              "id": "codex",
+              "kind": "tool",
+              "x": 370.0,
+              "y": 86.0,
+              "width": 190.0,
+              "height": 52.0,
+              "labels": [
+                {
+                  "text": "Diagram builder",
+                  "x": 380.0,
+                  "y": 107.0,
+                  "kind": "t1"
+                },
+                {
+                  "text": "HTML, CSS, and SVG",
+                  "x": 380.0,
+                  "y": 126.0,
+                  "kind": "t2"
+                }
+              ]
+            },
+            {
+              "id": "cursor",
+              "kind": "tool",
+              "x": 370.0,
+              "y": 162.0,
+              "width": 190.0,
+              "height": 52.0,
+              "labels": [
+                {
+                  "text": "Source review",
+                  "x": 380.0,
+                  "y": 183.0,
+                  "kind": "t1"
+                },
+                {
+                  "text": "Local reference, if supplied",
+                  "x": 380.0,
+                  "y": 202.0,
+                  "kind": "t2"
+                }
+              ]
+            },
+            {
+              "id": "grok",
+              "kind": "tool",
+              "x": 370.0,
+              "y": 238.0,
+              "width": 190.0,
+              "height": 52.0,
+              "labels": [
+                {
+                  "text": "Human review",
+                  "x": 380.0,
+                  "y": 259.0,
+                  "kind": "t1"
+                },
+                {
+                  "text": "Meaning and unresolved items",
+                  "x": 380.0,
+                  "y": 278.0,
+                  "kind": "t2"
+                }
+              ]
+            }
+          ],
+          "edges": [
+            {
+              "from": "vault",
+              "to": "claude",
+              "kind": "solid",
+              "path": "M150,36 H368",
+              "label": {
+                "text": "Run checks",
+                "x": 259.0,
+                "y": 28.0
+              }
+            },
+            {
+              "from": "vault",
+              "to": "codex",
+              "kind": "solid",
+              "path": "M150,112 H368",
+              "label": {
+                "text": "Render sheet",
+                "x": 259.0,
+                "y": 104.0
+              }
+            },
+            {
+              "from": "vault",
+              "to": "cursor",
+              "kind": "dash",
+              "path": "M150,188 H368",
+              "label": {
+                "text": "Inspect source",
+                "x": 259.0,
+                "y": 180.0
+              }
+            },
+            {
+              "from": "vault",
+              "to": "grok",
+              "kind": "dash",
+              "path": "M150,264 H368",
+              "label": {
+                "text": "Review meaning",
+                "x": 259.0,
+                "y": 256.0
+              }
+            }
+          ],
+          "legend": [
+            {
+              "label": "Local script",
+              "dashed": false
+            },
+            {
+              "label": "Review by a person or agent",
+              "dashed": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Check coverage",
+      "tag": "limits",
+      "components": [
+        {
+          "type": "table",
+          "columns": [
+            "Check",
+            "Result",
+            "Basis"
+          ],
+          "rows": [
+            [
+              "Sentence budget",
+              {
+                "text": "✓ Available",
+                "state": "ok"
+              },
+              "Project count method"
+            ],
+            [
+              "Vocabulary",
+              {
+                "text": "? Source needed",
+                "state": "unknown"
+              },
+              "Authorized local standard"
+            ],
+            [
+              "Meaning",
+              {
+                "text": "? Review needed",
+                "state": "unknown"
+              },
+              "Human judgment"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "text": "A passing check does not certify STE compliance."
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "title": "Preserve meaning",
+      "tag": "example",
+      "components": [
+        {
+          "type": "example",
+          "items": [
+            {
+              "text": "If the sensor fails, stop the test.",
+              "annotation": "Keep the condition before the action."
+            },
+            {
+              "text": "The cause may be a loose cable.",
+              "annotation": "Keep uncertainty. Do not state an unproven cause."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "title": "Sentence budgets",
+      "tag": "project checks",
+      "components": [
+        {
+          "type": "bars",
+          "items": [
+            {
+              "label": "Procedure sentence",
+              "value": 20.0,
+              "unit": "words",
+              "scale_max": 30.0,
+              "ticks": [
+                0.0,
+                10.0,
+                20.0,
+                30.0
+              ]
+            },
+            {
+              "label": "Description sentence",
+              "value": 25.0,
+              "unit": "words",
+              "scale_max": 30.0,
+              "ticks": [
+                0.0,
+                10.0,
+                20.0,
+                30.0
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "title": "Human review",
+      "tag": "open checks",
+      "components": [
+        {
+          "type": "checks",
+          "items": [
+            {
+              "state": "open",
+              "text": "Check the facts, units, conditions, and action order."
+            },
+            {
+              "state": "open",
+              "text": "Review possible grammar findings."
+            },
+            {
+              "state": "open",
+              "text": "Use local reference access for source-based rulings."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "title": "Clear writing workflow",
+    "source": "Original package example",
+    "scope": "Prose, diagrams, and review",
+    "date": "2026-10-07"
+  }
+}
