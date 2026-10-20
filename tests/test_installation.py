@@ -43,7 +43,7 @@ class InstallTests(unittest.TestCase):
     def test_relative_skill_links(self):
         for skill in installer.SKILLS:
             for md in (ROOT / 'skills' / skill).rglob('*.md'):
-                for link in re.findall(r'\]\(([^)]+)\)', md.read_text()):
+                for link in re.findall(r'\]\(([^)]+)\)', md.read_text(encoding='utf-8')):
                     if '://' not in link and not link.startswith('#'):
                         self.assertTrue((md.parent / link.split('#')[0]).exists(), f'{md.name}: {link}')
 
