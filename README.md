@@ -59,7 +59,7 @@ python3 evals/run_evals.py
 
 For PDF tests, install `requirements-pdf.txt` first. Without that optional dependency, one synthetic PDF test skips. No test needs the official standard.
 
-See [evaluation](docs/evaluation.md), [visual comparison](docs/visual-testing.md), and [build results](docs/build-results.md). Live host discovery and fresh-session model comparisons remain untested. The evaluation runner validates cases and supplied reviews; it does not make model calls or pass semantic checks from keywords.
+See [evaluation](docs/evaluation.md), [visual comparison](docs/visual-testing.md), and [build results](docs/build-results.md). GitHub Actions checks source tests on Linux, macOS, and Windows. It also checks each published release by download, manifest, installation, tests, and diagram render. These checks do not prove live host discovery or model behavior. The evaluation runner validates cases and supplied reviews; it does not make model calls or pass semantic checks from keywords.
 
 To build a release archive, stage the final files and run `python3 scripts/build_release.py --output /path/outside/repo/ste100-release.zip`. The command checks archived files and writes a hash manifest.
 

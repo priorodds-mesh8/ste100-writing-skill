@@ -1,0 +1,32 @@
+name: Public release smoke
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to check
+        required: true
+        default: v0.1.0
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download and check the public release
+        run: >-
+          python scripts/smoke_release.py
+          --archive-url https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name || inputs.tag }}/ste100-writing-skill-0.1.0.zip
+          --manifest-url https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name || inputs.tag }}/ste100-writing-skill-0.1.0.manifest.json
