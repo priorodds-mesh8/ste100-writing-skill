@@ -96,18 +96,37 @@ def download(url, output):
             handle.write(block)
 
 
+def release_asset_urls(url):
+    with urllib.request.urlopen(url) as response:
+        release = json.loads(response.read().decode('utf-8'))
+    assets = release.get('assets', [])
+    archives = [asset.get('browser_download_url') for asset in assets if asset.get('name', '').endswith('.zip')]
+    manifests = [asset.get('browser_download_url') for asset in assets if asset.get('name', '').endswith('.manifest.json')]
+    if len(archives) != 1 or len(manifests) != 1:
+        raise ValueError('The release must have one ZIP archive and one manifest.')
+    return archives[0], manifests[0]
+
+
 def main():
     parser = argparse.ArgumentParser(description='Download, verify, install, and test a public release.')
-    parser.add_argument('--archive-url', required=True)
-    parser.add_argument('--manifest-url', required=True)
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument('--release-api-url')
+    source.add_argument('--archive-url')
+    parser.add_argument('--manifest-url')
     args = parser.parse_args()
     try:
+        if args.release_api_url:
+            archive_url, manifest_url = release_asset_urls(args.release_api_url)
+        elif args.manifest_url:
+            archive_url, manifest_url = args.archive_url, args.manifest_url
+        else:
+            raise ValueError('Use --manifest-url with --archive-url.')
         with tempfile.TemporaryDirectory(prefix='ste100-release-smoke-') as temporary:
             workspace = Path(temporary)
             archive = workspace / 'release.zip'
             manifest = workspace / 'release.manifest.json'
-            download(args.archive_url, archive)
-            download(args.manifest_url, manifest)
+            download(archive_url, archive)
+            download(manifest_url, manifest)
             root, count, digest = verify_archive(archive, manifest)
             with zipfile.ZipFile(archive) as package:
                 package.extractall(workspace / 'source')

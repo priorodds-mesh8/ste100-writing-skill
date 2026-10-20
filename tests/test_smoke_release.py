@@ -5,6 +5,7 @@ import tempfile
 import unittest
 import zipfile
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('smoke_release', ROOT / 'scripts/smoke_release.py')
@@ -40,6 +41,17 @@ class ReleaseSmokeTests(unittest.TestCase):
             manifest.write_text(json.dumps(data), encoding='utf-8')
             with self.assertRaisesRegex(ValueError, 'do not match'):
                 smoke_release.verify_archive(archive, manifest)
+
+    def test_release_asset_urls_gets_the_required_assets(self):
+        body = json.dumps({'assets': [
+            {'name': 'skill.zip', 'browser_download_url': 'https://example.test/skill.zip'},
+            {'name': 'skill.manifest.json', 'browser_download_url': 'https://example.test/skill.manifest.json'},
+        ]}).encode()
+        with mock.patch.object(smoke_release.urllib.request, 'urlopen') as request:
+            request.return_value.__enter__.return_value.read.return_value = body
+            archive, manifest = smoke_release.release_asset_urls('https://example.test/release')
+        self.assertEqual(archive, 'https://example.test/skill.zip')
+        self.assertEqual(manifest, 'https://example.test/skill.manifest.json')
 
 
 if __name__ == '__main__':
